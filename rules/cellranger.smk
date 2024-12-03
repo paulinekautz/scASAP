@@ -53,8 +53,8 @@ rule cellranger_mv:
         out="{}/{{sample}}/cellranger_mv.out".format(LOGDIR)
     shell:
        """
-       cp -R {wildcards.sample}/outs/* {OUTDIR}/{wildcards.sample}/cellranger_count
-       rm -R {wildcards.sample}
-       touch {OUTDIR}/{wildcards.sample}/cellranger_count/cellranger.finish
+        rsync -a {wildcards.sample}/outs/* {OUTDIR}/{wildcards.sample}/cellranger_count
+        rm -R {wildcards.sample}
+        touch {OUTDIR}/{wildcards.sample}/cellranger_count/cellranger.finish
        """
     
